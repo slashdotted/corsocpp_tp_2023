@@ -1,39 +1,50 @@
-void foo(const int& a) {
-}
-
-void foo2(int& a) {
-}
-
-void bar(int a) {
-}
-
-void baz(int* a) {
-}
-
-int gen() {
-    return 42;
-}
+#include <iostream>
 
 int main() {
-    int x;
+    using namespace std;
 
-    x = 77; // x is an L-VALUE (on the left of the assignment)
-            // 77 is an R-VALUE (can only be on the right of the assignment)
-    
-    // x is an L-VALUE therefore
-    foo(x); // x can be passed by reference
-    bar(x); // x can be passed by value (-> copy!)
-    baz(&x); // can be pass by using its address (which is passed by value)
+    int data[] = {1,2,3,4,5};
 
-    // 42 is an R-VALUE therefore
-    bar(42); // 42 can be passed by value
-    foo(42); // 42 can be passed by by const reference
-    //foo2(42); // ERROR: 42 CANNOT be passed by non-const reference
-    //baz(&42); // ERROR: 42 has no address
+    cout << "Iteration like in C\n";
+    for (int i{0}; i<5;++i) {
+        data[i] *= 2; // Can modify the array
+        cout << data[i] << endl;
+    }
 
-    // (the return value of) gen() is R-VALUE therefore
-    bar(gen()); // (the return value of) gen() can be passed by alue
-    foo(gen()); // (the return value of) gen() can be passed by by const reference
-    //foo2(gen()); // ERROR: (the return value of) gen() CANNOT be passed by non-const reference
-    //baz(&gen()); // ERROR: gen() has no address
+    cout << "Iteration using C++11 ('foreach'): COPY\n";
+    for (int x : data) {
+        x *= 2; // x is a COPY of an element in the array
+        cout << x << endl;
+    }
+
+    cout << "Iteration using C++11 ('foreach'): COPY\n";
+    for (auto x : data) {
+        x *= 2; // x is a COPY of an element in the array
+        cout << x << endl;
+    }
+
+    cout << "Iteration using C++11 ('foreach'): reference\n";
+    for (int& x : data) {
+        x *= 2;
+        cout << x << endl;
+    }
+
+    cout << "Iteration using C++11 ('foreach'): reference\n";
+    for (auto& x : data) {
+        x *= 2;
+        cout << x << endl;
+    }
+
+    cout << "Iteration using C++11 ('foreach'): const reference\n";
+    for (const auto& x : data) {
+        // x *= 2; // ERROR: x is const
+        cout << x << endl;
+    }
+
+    cout << "Iteration using C++11 ('foreach'): const reference\n";
+    for (const int& x : data) {
+        // x *= 2; // ERROR: x is const
+        cout << x << endl;
+    }
+
 }
