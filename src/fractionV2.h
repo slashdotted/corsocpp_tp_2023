@@ -16,6 +16,14 @@ public:
     void print() const;
     void reset();
 
+    double toDouble() const {
+        return (double) numerator / denominator;
+    }
+
+    operator double() {
+        return this->toDouble();
+    }
+
     Fraction& operator += (const Fraction& f);
     Fraction& operator -= (const Fraction& f);
     
