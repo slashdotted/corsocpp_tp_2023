@@ -11,3 +11,5 @@ add_executable(exercise1-1 src/series1-1.cpp)
 add_executable(exercise2-1 src/series2-1.cpp)
 add_executable(exercise2-2 src/series2-2.cpp)
 add_executable(exercise3-1 src/series3-1.cpp)
+add_executable(composition src/composition.cpp)
+
