@@ -12,4 +12,10 @@ add_executable(exercise2-1 src/series2-1.cpp)
 add_executable(exercise2-2 src/series2-2.cpp)
 add_executable(exercise3-1 src/series3-1.cpp)
 add_executable(composition src/composition.cpp)
+add_executable(owership src/ownership.cpp)
+add_executable(uniqueptr src/uniqueptr.cpp)
+add_executable(sharedptr src/sharedptr.cpp)
+add_executable(mysmartpointers src/mysmartpointers.cpp)
+add_executable(exceptions src/exceptions.cpp)
+
 
