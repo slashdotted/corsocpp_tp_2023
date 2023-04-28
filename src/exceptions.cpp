@@ -1,6 +1,30 @@
 #include <iostream>
 #include <memory>
 
+void likeInJava() {
+    auto s = new std::string{"Hello world"};
+    //...
+    throw 42;
+    delete s; // Never reached
+}
+
+void example(std::string* x) {
+
+}
+
+void likeInCPP() {
+    std::string s{"Hello world"};
+    example(&s);
+    //...
+    throw 42;
+}
+
+void likeInCPP2() {
+    std::unique_ptr<std::string> s{new std::string{"Hello world"}};
+    //...
+    throw 42;
+}
+
 void fin(int i) {
     int y;
     std::unique_ptr<int> x{new int{1}}; // on the stack, 

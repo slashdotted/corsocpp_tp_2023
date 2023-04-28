@@ -3,7 +3,7 @@
 
 Lecturer::Lecturer(std::string name, std::string institute, int nr, std::string studies,
                    std::string course)
-    : m_studies{studies}, m_course{course} {
+    : Employee{name, institute, nr}, m_studies{studies}, m_course{course} {
   std::cout << "Costructing Lecturer" << std::endl;
 }
 Lecturer::~Lecturer() { std::cout << "Destroying Lecturer" << std::endl; }

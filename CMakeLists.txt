@@ -17,7 +17,10 @@ add_executable(uniqueptr src/uniqueptr.cpp)
 add_executable(sharedptr src/sharedptr.cpp)
 add_executable(mysmartpointers src/mysmartpointers.cpp)
 add_executable(exceptions src/exceptions.cpp)
-add_executable(inheritance src/inheritance.cpp src/employee.cpp src/lecturer.cpp src/researcher.cpp)
+add_executable(inheritance src/inheritance.cpp)
+add_executable(inheritance2 src/inheritance2.cpp)
+add_executable(supsi src/supsi.cpp src/employee.cpp src/lecturer.cpp src/researcher.cpp)
 add_executable(todolist src/TodoList.cpp src/TodoElement.cpp src/TodoContainer.cpp)
+add_executable(binding src/binding.cpp)
 
 

@@ -3,12 +3,13 @@
 #include <string>
 
 class Employee {
+public:
   Employee(std::string name, std::string institute, int nr);
   ~Employee();
   const std::string& name() const;
   const std::string& institute() const;
   int employeenr() const;
-  std::string classname() const;
+  virtual std::string classname() const;
 
 protected:
   std::string m_name;
