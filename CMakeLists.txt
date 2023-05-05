@@ -22,5 +22,8 @@ add_executable(inheritance2 src/inheritance2.cpp)
 add_executable(supsi src/supsi.cpp src/employee.cpp src/lecturer.cpp src/researcher.cpp)
 add_executable(todolist src/TodoList.cpp src/TodoElement.cpp src/TodoContainer.cpp)
 add_executable(binding src/binding.cpp)
+add_executable(overloading src/overloading.cpp)
+add_executable(overriding src/overriding.cpp)
+add_executable(hiding src/hiding.cpp)
 
 
