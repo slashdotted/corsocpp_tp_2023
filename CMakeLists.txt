@@ -25,5 +25,6 @@ add_executable(binding src/binding.cpp)
 add_executable(overloading src/overloading.cpp)
 add_executable(overriding src/overriding.cpp)
 add_executable(hiding src/hiding.cpp)
+add_executable(operators src/operators.cpp)
 
 

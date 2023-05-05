@@ -4,6 +4,7 @@ class Base {
 public:
   void foo() {
     cout << "\tBase::foo()" << endl;
+    //Base::bar(); // forces calling the implementation provided by Base
     bar();
   }
   virtual void bar() {
