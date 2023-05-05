@@ -26,5 +26,6 @@ add_executable(overloading src/overloading.cpp)
 add_executable(overriding src/overriding.cpp)
 add_executable(hiding src/hiding.cpp)
 add_executable(operators src/operators.cpp)
+add_executable(series6-exercise2 src/series6-exercise2.cpp)
 
 
