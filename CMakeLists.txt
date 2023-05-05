@@ -27,5 +27,7 @@ add_executable(overriding src/overriding.cpp)
 add_executable(hiding src/hiding.cpp)
 add_executable(operators src/operators.cpp)
 add_executable(series6-exercise2 src/series6-exercise2.cpp)
+add_executable(notinherited src/notinherited.cpp)
+add_executable(virtualdestructor src/virtualdestructor.cpp)
 
 
