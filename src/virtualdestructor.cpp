@@ -24,7 +24,7 @@ struct Cube : Drawable {
         *t = *c.t;
         return *this;
     }
-    ~Cube() {
+    ~Cube() override {
         delete t;
     }
     void draw() override {        
