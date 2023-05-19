@@ -33,4 +33,4 @@ add_executable(final src/final.cpp)
 add_executable(deletemod src/deletemod.cpp)
 add_executable(defaultmod src/defaultmod.cpp) 
 add_executable(multipleinheritance src/multipleinheritance.cpp src/lecturer.cpp src/researcher.cpp src/employee.cpp src/lecturerResearcher.cpp)
-
+add_executable(casts src/casts.cpp)

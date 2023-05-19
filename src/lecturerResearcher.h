@@ -10,7 +10,8 @@ class LecturerResearcher : public Lecturer, public Researcher {
             double researchpercentage);
 
         double researchpercentage() const;
-        const std::string& name() const;
+        //const std::string& name() const;
+        std::string classname() const override;
 
     private:
         double m_researchpercentage;

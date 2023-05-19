@@ -2,7 +2,7 @@
 #include <string>
 #include "employee.h"
 
-class Researcher : public Employee {
+class Researcher : public virtual Employee {
 public:
   Researcher(std::string name, std::string institute, int nr, std::string researcharea);
   ~Researcher();
