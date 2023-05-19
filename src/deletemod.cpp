@@ -26,12 +26,11 @@ struct FooUnique {
     }
 
     void bar() {
-        FooUnique temp{*this};
+        //FooUnique temp{*this}; // Error, the constructor is deleted
     }
 
-private:    
-    FooUnique(const FooUnique&) {};
-    FooUnique& operator=(const FooUnique&) { return *this; }
+    FooUnique(const FooUnique&) = delete;
+    FooUnique& operator=(const FooUnique&) = delete;
 
 private:
     Foo* ptr;
