@@ -1,10 +1,12 @@
 #include <string>
 #include <iostream>
+#include <typeinfo>
 
 struct Foo {
     Foo(std::string v) 
         : value{v} {}
     std::string value;
+    virtual ~Foo() = default;
 };
 
 struct Bar : virtual Foo {
@@ -47,7 +49,7 @@ struct OofNV : BarNV, BazNV {
 void fn(Foo*) {}
 void fn(Foo&) {}
 
-int staticcast() {
+void staticcast() {
     Foo foo{"MyFoo"};
     Bar bar{"MyBar", 42};
     Baz baz{"MyBaz", 3.14};
@@ -109,7 +111,7 @@ int staticcast() {
 }
 
 
-int dynamiccast() {
+void dynamiccast() {
     Foo foo{"MyFoo"};
     Bar bar{"MyBar", 42};
     Baz baz{"MyBaz", 3.14};
@@ -118,6 +120,47 @@ int dynamiccast() {
     BazNV baznv{"MyBazNV", 3.14};
     OofNV oofnv{"MyOofNV", 13, 2.6, false};
 
+    // dynamic_cast<target>(source) 
+
+    // Upcasting
+    //Bar bar_from_oof = dynamic_cast<Bar>(oof); // Casting from Oof to Bar (value) is not possible
+    Bar bar_from_oof_2 = oof;
+
+    Bar& bar_ref_from_oof = dynamic_cast<Bar&>(oof); // Casting from Oof& to Bar& (reference)
+    Bar& bar_ref_from_oof_2 = oof;
+
+    Bar* bar_ptr_from_oof = dynamic_cast<Bar*>(&oof); // Casting from Oof* to Bar* (pointer)
+    Bar* bar_ptr_from_oof_2 = &oof;
+
+    // Downcasting
+
+    std::cout << "&oof:" << &oof << '\n';
+    
+    Oof& oof_ref_from_bar = dynamic_cast<Oof&>(bar_ref_from_oof);
+    Oof* oof_ptr_from_bar = dynamic_cast<Oof*>(bar_ptr_from_oof);
+
+    BazNV* baznv_ptr_from_barnv = dynamic_cast<BazNV*>(&barnv);
+    if(!baznv_ptr_from_barnv) {
+        std::cerr << "Cast non valido\n";
+    }
+
+    try {
+        BazNV& baznv_ref_from_barnv = dynamic_cast<BazNV&>(barnv);
+    } catch(std::bad_cast e) {
+        std::cerr << "Cast non valido\n";
+    }
+    
+    OofNV* oofnv_ptr_from_a_bar = dynamic_cast<OofNV*>(&barnv);
+    if (oofnv_ptr_from_a_bar) {
+        std::cout << "my:" << oofnv_ptr_from_a_bar->my << '\n'; 
+        std::cout << "mz:" << oofnv_ptr_from_a_bar->mz << '\n';
+    }
+
+    Foo* foo_ptr_from_oof  = dynamic_cast<Foo*>(&oof); // Upcasting works
+    // Oof* oof_ptr_from_foo = dynamic_cast<Oof*>(foo_ptr_from_oof); // Downcasting through a virtual doesn't
+
+    std::cout << "&oof_ref_from_bar:" << &oof_ref_from_bar << '\n';
+    std::cout << "oof_ptr_from_bar:" << oof_ptr_from_bar << '\n';
 
 }
 
