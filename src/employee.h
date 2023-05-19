@@ -8,6 +8,7 @@ public:
   Employee(std::string name, std::string institute, int nr);
   ~Employee();
   const std::string& name() const;
+  void name(const std::string& name);
   const std::string& institute() const;
   int employeenr() const;
   std::string classname() const override;
