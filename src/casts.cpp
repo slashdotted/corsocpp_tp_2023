@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <typeinfo>
+#include <map>
 
 struct Foo {
     Foo(std::string v) 
@@ -27,6 +28,19 @@ struct Oof : Bar, Baz {
     bool mz;
 };
 
+bool instanceOfOof(Foo* f) {
+    auto p = dynamic_cast<Oof*>(f);
+    return p != nullptr;
+}
+
+bool instanceOfOof(Foo& f) {
+    try {
+        auto p = dynamic_cast<Oof&>(f);
+        return true;
+    } catch(...) {
+        return false;
+    }
+}
 
 struct BarNV : Foo {
     BarNV(std::string v, int x) 
@@ -162,10 +176,49 @@ void dynamiccast() {
     std::cout << "&oof_ref_from_bar:" << &oof_ref_from_bar << '\n';
     std::cout << "oof_ptr_from_bar:" << oof_ptr_from_bar << '\n';
 
+    void* void_ptr_from_foo = foo_ptr_from_oof;
+    //Foo* foo_ptr_from_void  = dynamic_cast<Foo*>(void_ptr_from_foo); // Can't dynamic cast from void*
 }
+
+struct Computer {
+
+    int compute(int z) const {
+        if (cache.count(z)) {
+            return cache.at(z);
+        }
+        int result = z*z;
+        Computer* c{const_cast<Computer*>(this)};
+        c->cache[z] = result;
+        return result;
+    }
+
+private:
+    std::map<int,int> cache;
+};
+
+
+void constcast() {
+    int i{42};
+    const int& ri{i};
+    const int* pi{&i};
+
+    // ri =13;// not possible since ri is const
+    // *pi = 52; // not possible since *pi is const
+
+    int& ncri{const_cast<int&>(ri)};
+    ncri = 13;
+    int* ncpi{const_cast<int*>(pi)};
+    *ncpi = 52;
+
+    const Computer c;
+    c.compute(44);
+}
+
+
 
 int main() {
     staticcast();
     dynamiccast();
+    constcast();
 
 }
