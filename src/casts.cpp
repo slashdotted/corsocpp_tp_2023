@@ -171,7 +171,7 @@ void dynamiccast() {
     }
 
     Foo* foo_ptr_from_oof  = dynamic_cast<Foo*>(&oof); // Upcasting works
-    // Oof* oof_ptr_from_foo = dynamic_cast<Oof*>(foo_ptr_from_oof); // Downcasting through a virtual doesn't
+    Oof* oof_ptr_from_foo = dynamic_cast<Oof*>(foo_ptr_from_oof); // Downcasting through a virtual works with dynamic_cast
 
     std::cout << "&oof_ref_from_bar:" << &oof_ref_from_bar << '\n';
     std::cout << "oof_ptr_from_bar:" << oof_ptr_from_bar << '\n';
